@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map API作業</title>
+
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy5_SjUbRXayyiYVb9QaQSlRUW6CSM5Io&callback=initMap"></script>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            const cityhall = { lat: 25.045907288445335, lng: 121.52353202533641 };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+                center: cityhall,
+            });
+            const contentString =
+                '<h1>"善導寺"</h1>' +
+                '<div id="siteNotice">' +
+                "</div>" +
+                '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+                '<div id="bodyContent">' +
+                "<p><b>Uluru</b>, 善導寺善導寺善導寺善導寺善導寺</b>, is a large " +
+                "sandstone rock formation in the southern part of the " +
+                "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
+                "south west of the nearest large town, Alice Springs; 450&#160;km " +
+                "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
+                "features of the Uluru - Kata Tjuta National Park. Uluru is " +
+                "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
+                "Aboriginal people of the area. It has many springs, waterholes, " +
+                "rock caves and ancient paintings. Uluru is listed as a World " +
+                "Heritage Site.</p>" +
+                '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+                "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
+                "(last visited June 22, 2009).</p>" +
+                "</div>" +
+                "</ㄢ>";
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                ariaLabel: "Uluru",
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: cityhall,
+                map: map,
+                title: "善導寺捷運站"
+            });
+            marker.addListener("click", () => {
+                infowindow.open({
+                    anchor: marker,
+                    map,
+                });
+            });
+        }
+
+        window.initMap = initMap;
+
+
+    </script>
+</body>
+
+</html>
